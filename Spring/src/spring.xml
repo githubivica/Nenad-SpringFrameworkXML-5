@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:property-placeholder location="classpath:profesor.properties"/> <!-- load properties file-->
+    <!-- bean definitions here -->
+    <bean id = "mojProfesorM" class = "spring.demo.ProfesorMatematike">  
+    	<constructor-arg index="0"  value = "Lajbnic" /><!-- Constrictor injection-->
+    	<constructor-arg index="1" ref = "oblastRada" /><!-- Constrictor injection-->
+    </bean>
+    
+    <bean id = "mojProfesorB" class = "spring.demo.ProfesorBiologije">  
+    	<property name = "oblast" ref = "oblastRada"/> <!-- Setter injection-->
+    	<property name = "ime" value = "Darvin"/>      <!-- Injecting litteral value-->
+    </bean>
+    
+    <bean id = "mojProfesorF" class = "spring.demo.ProfesorFizike">  
+    	<property name = "oblast" ref = "oblastRada"/> <!-- Setter injection-->
+    	<property name = "ime" value = "${prof.ime}"/>      <!-- Injecting litteral value from properties file-->
+    </bean>
+
+    <bean id = "oblastRada" class = "spring.demo.Oblast">
+    
+    </bean>
+    
+    
+
+</beans>
